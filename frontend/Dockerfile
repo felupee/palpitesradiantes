@@ -1,14 +1,16 @@
 
-FROM node:16-alpine
+FROM node
 
-WORKDIR /app/frontend
+RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app/frontend
 
-COPY package.json .
+WORKDIR /usr/src/app/frontend
 
+COPY package*.json ./
 RUN npm install
 
 COPY . .
 
 EXPOSE 3000
 
-ENTRYPOINT [ "npm", "start"]
+CMD [ "npm", "start" ]
